@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5437/feedback_db
+    url: jdbc:postgresql://postgres-user-db:5432/feedback_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -24,4 +24,4 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://service-registry:8761/eureka/
