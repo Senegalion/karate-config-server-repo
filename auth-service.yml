@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5437/auth_db
+    url: jdbc:postgresql://localhost:5438/auth_db
     # url: jdbc:postgresql://postgres-auth-db:5432/auth_db
     username: postgres
     password: postgres
