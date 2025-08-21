@@ -3,7 +3,8 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgres-auth-db:5432/auth_db
+    url: jdbc:postgresql://localhost:5437/auth_db
+    # url: jdbc:postgresql://postgres-auth-db:5432/auth_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -30,4 +31,5 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
   client:
     service-url:
-      defaultZone: http://service-registry:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+      # defaultZone: http://service-registry:8761/eureka/
