@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5438/training_db
-    # url: jdbc:postgresql://localhost:5436/training_db
+    # url: jdbc:postgresql://postgres-club-db:5432/training_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
