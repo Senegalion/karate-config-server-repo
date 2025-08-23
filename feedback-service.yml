@@ -20,6 +20,12 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+auth:
+  jwt:
+    secretKey: ${JWT_SECRET:defaultSecretKey}
+    expirationDays: ${JWT_EXPIRATION_DAYS:30}
+    issuer: karate-management-system-backend
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
