@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5439/enrollment_db
-    # url: jdbc:postgresql://postgres-feedback-db:5432/enrollment_db
+    # url: jdbc:postgresql://postgres-enrollment-db:5432/enrollment_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
