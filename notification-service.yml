@@ -2,31 +2,11 @@ server:
   port: 8087
 
 spring:
-    rabbitmq:
-    host: localhost
-    #    host: rabbitmq
-    port: 5672
-    username: guest
-    password: guest
   cloud:
     stream:
       kafka:
         binder:
           brokers: kafka:9092
-            default-binder: rabbit
-      bindings:
-        user-events-in:
-          destination: user-events
-          group: notification-service
-          binder: kafka
-        enrollment-events-in:
-          destination: enrollment-events
-          group: notification-service
-          binder: kafka
-        feedback-events-in:
-          destination: feedback-events
-          group: notification-service
-          binder: kafka
 auth:
   jwt:
     secretKey: ${JWT_SECRET:defaultSecretKey}
