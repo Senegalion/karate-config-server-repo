@@ -2,12 +2,6 @@ server:
   port: 8086
 
 spring:
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: localhost:9092
-          # brokers: kafka:9092
   datasource:
     url: jdbc:postgresql://localhost:5439/enrollment_db
     # url: jdbc:postgresql://postgres-enrollment-db:5432/enrollment_db
