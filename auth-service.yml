@@ -38,7 +38,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,loggers,metrics,prometheus,refresh,resilience4j*
+        include: "*"
   endpoint:
     refresh:
       enabled: true
