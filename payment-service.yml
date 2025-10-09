@@ -25,12 +25,18 @@ spring:
     consumer:
       group-id: payment-service
       properties:
+        spring.json.use.type.headers: false
         spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.karate.payment_service.infrastructure.messaging.dto.UserRegisteredEvent
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+topics:
+  user-registered: user-events
+  payment-events: payment-events
 
 auth:
   jwt:
@@ -104,7 +110,3 @@ paypal:
   mode: "sandbox"
   client-id: ${PAYPAL_CLIENT_ID:ATsjDqjpPBHA5ZNFAm4YGLPioWd6e2deYB12kbksjVD5xDROAq0QFIPf32lR5n-3_m4GcenSPsJ1dS_A}
   client-secret: ${PAYPAL_CLIENT_SECRET:EHsOc_t4LQ4tndkT6iuufi6mWI44buCHZVvhwjZPalykt4XZajmUZhg5JthcFP260iLsrLQQMho9N84g}
-
-topics:
-  user-registered: ${TOPIC_USER_REGISTERED:user-events}
-  payment-events: ${TOPIC_PAYMENT_EVENTS:payment-events}
