@@ -1,1 +1,105 @@
+server:
+  port: 8088
 
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5438/payment_db
+    # url: jdbc:postgresql://postgres-payment-db:5432/payment_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: payment-service
+      properties:
+        spring.json.trusted.packages: "*"
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+auth:
+  jwt:
+    secretKey: ${JWT_SECRET:defaultSecretKey}
+    expirationDays: ${JWT_EXPIRATION_DAYS:30}
+    issuer: karate-management-system-backend
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      # defaultZone: http://service-registry:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    refresh:
+      enabled: true
+  tracing:
+    enabled: true
+    sampling:
+      probability: 0.1   # PROD: tylko część requestów
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+      # endpoint: http://zipkin:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO
+    com.karate: INFO
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+      clubService:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+  retry:
+    instances:
+      userService:
+        maxAttempts: 3
+        waitDuration: 200ms
+      clubService:
+        maxAttempts: 3
+        waitDuration: 200ms
+  timelimiter:
+    instances:
+      userService:
+        timeoutDuration: 2s
+
+payments:
+  monthly-fee: ${PAYMENTS_MONTHLY_FEE:150.00}
+  currency: ${PAYMENTS_CURRENCY:PLN}
+  reminder:
+    cron: ${PAYMENTS_REMINDER_CRON:0 0 9 5 * *}
+
+topics:
+  user-registered: ${TOPIC_USER_REGISTERED:user-events}
+  payment-events: ${TOPIC_PAYMENT_EVENTS:payment-events}
