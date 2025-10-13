@@ -11,27 +11,7 @@ spring:
       properties:
         spring.json.use.type.headers: false
         spring.json.trusted.packages: "*"
-
-  mail:
-    host: ${MAIL_HOST:localhost}
-    port: ${MAIL_PORT:3025}
-    username: ${MAIL_USERNAME:defaultUsername}
-    password: ${MAIL_PASSWORD:defaultPassword}
-    properties:
-      mail:
-        smtp:
-          auth: ${MAIL_SMTP_AUTH:false}
-          starttls:
-            enable: ${MAIL_SMTP_STARTTLS:false}
-      timeout: ${MAIL_PROPERTIES_TIMEOUT:5000}
-      connectiontimeout: ${MAIL_PROPERTIES_CONNECTION_TIMEOUT:5000}
-      writetimeout: ${MAIL_PROPERTIES_WRITE_TIMEOUT:5000}
-
-app:
-  mail:
-    from: ${APP_MAIL_FROM:no-reply@karate.local}
-    fromName: ${APP_MAIL_FROM_NAME:Karate Management System}
-
+        
 topics:
   user-registered: ${TOPIC_USER_REGISTERED:user-events}
   enrollment-created: ${TOPIC_ENROLLMENT_CREATED:enrollment-events}
