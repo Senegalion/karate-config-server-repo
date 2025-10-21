@@ -37,6 +37,7 @@ spring:
 topics:
   user-registered: user-events
   payment-events: payment-events
+  user-deleted: user.deleted
 
 auth:
   jwt:
