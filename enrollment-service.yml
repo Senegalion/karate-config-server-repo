@@ -3,8 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5439/enrollment_db
-    # url: jdbc:postgresql://postgres-enrollment-db:5432/enrollment_db
+    url: jdbc:postgresql://postgres-enrollment-db:5432/enrollment_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -31,8 +30,7 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
-      # defaultZone: http://service-registry:8761/eureka/
+      defaultZone: http://service-registry:8761/eureka/
 
 management:
   endpoints:
@@ -45,11 +43,10 @@ management:
   tracing:
     enabled: true
     sampling:
-      probability: 0.1   # PROD: tylko część requestów
+      probability: 0.1
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
-      # endpoint: http://zipkin:9411/api/v2/spans
+      endpoint: http://zipkin:9411/api/v2/spans
 
 logging:
   level:
