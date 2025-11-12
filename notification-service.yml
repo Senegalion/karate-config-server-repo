@@ -84,3 +84,10 @@ logging:
   level:
     root: INFO
     com.karate: INFO
+
+app:
+  web:
+    base-url: ${APP_WEB_BASE_URL:http://localhost:3000}
+    dashboard-url: ${APP_WEB_DASHBOARD_URL:${app.web.base-url}/app/dashboard}
+    preferences-url: ${APP_WEB_PREFERENCES_URL:${app.web.base-url}/settings/notifications}
+    privacy-url: ${APP_WEB_PRIVACY_URL:${app.web.base-url}/settings/security}
